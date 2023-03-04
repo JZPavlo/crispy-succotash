@@ -1,0 +1,33 @@
+{
+  "name": "e2e-crispy-succotash",
+  "version": "1.0.0",
+  "description": "Cypress e2e tests for crispy-succotash",
+  "main": "index.js",
+  "author": "Yuliya Zhukova",
+  "license": "MIT",
+  "scripts": {
+    "triggerAllTests-headless": "yarn cypress run",
+    "triggerAllTests-headed": "yarn cypress run --headed",
+    "triggerAllTests-dashboard": "yarn cypress run --record --key dbd1a53d-0653-4b14-a206-0a4fe46e27bc",
+    "triggerAllTests-auth": "yarn cypress run --spec cypress/e2e/auth/login.js",
+    "delete-results": "rm -rf cypress/results/* || true",
+    "mochawesome-merge": "yarn mochawesome-merge cypress/results/mochawesome/*.json > mochawesome.json && yarn marge mochawesome.json",
+    "delete-mochawesome-report": "rm -rf mochawesome-report/* || true",
+    "cypress-regression-pack": "yarn run delete-results && yarn run delete-mochawesome-report && yarn run triggerAllTests-headless && yarn run mochawesome-merge"
+  },
+  "dependencies": {
+    "@cypress/xpath": "^2.0.3",
+    "cypress": "12.6.0",
+    "faker": "^6.6.6"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "cypress-multi-reporters": "^1.6.2",
+    "cypress-xpath": "^2.0.1",
+    "mocha": "^8.0.1",
+    "mocha-junit-reporter": "^2.2.0",
+    "mochawesome": "^6.1.1",
+    "mochawesome-merge": "^4.1.0",
+    "mochawesome-report-generator": "^5.1.0"
+  }
+}
